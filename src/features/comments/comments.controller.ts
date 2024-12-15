@@ -1,19 +1,19 @@
 import {
-  Body,
   Controller,
-  Delete,
+  UseGuards,
   Get,
   Param,
   Post,
-  Put,
+  Body,
   Req,
   Res,
-  UseGuards,
+  Put,
+  Delete,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
-import { AuthGuard } from 'src/guards/auth.guard';
-import { CommentsService } from './comments.service';
 import { ApiOperation, ApiBody } from '@nestjs/swagger';
+import { AuthGuard } from '../../guards/auth.guard';
+import { CommentsService } from './comments.service';
+import { Request, Response } from 'express';
 
 @Controller('comments')
 @UseGuards(AuthGuard)
@@ -22,7 +22,7 @@ export class CommentsController {
 
   @Get(':id')
   @ApiOperation({ summary: 'Get all comments by task ID' })
-  getTaskById(@Param('id') id: number) {
+  getById(@Param('id') id: number) {
     return this.commentsService.getByTaskId(id);
   }
 

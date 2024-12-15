@@ -5,11 +5,13 @@ env:
 on:
   push:
     branches-ignore:
-      - main
+      - master
 jobs:
   Deploy-Preview:
     runs-on: ubuntu-latest
     steps:
+      - name: Create a directory
+        run: mkdir -p public
       - uses: actions/checkout@v4.2.2
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
